@@ -35,6 +35,12 @@ def main():
     drug_name = st.selectbox("Pick the drug you'd like info about:", results.keys())
     
     st.write(drug_info[drug_info[selection]==drug_name].T)
+    
+    if selection == "Brand":
+        choice = "Brand Name"
+    else:
+        choice = "Generic Name"
+    st.write(med_df[med_df[choice]==drug_name])
 
 if __name__ == "__main__":
     main()
