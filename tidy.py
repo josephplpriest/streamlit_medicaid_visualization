@@ -22,7 +22,7 @@ class Tidy_df():
         
         start, end = col_locs
         ind_df = df.iloc[header_row+1:,start:end+1]
-        print(ind_df.columns)
+        
         ind_df.columns = df.iloc[header_row,start:end+1]
         ind_df.reset_index(inplace=True, drop=True)
         self.indices = ind_df
@@ -32,7 +32,7 @@ class Tidy_df():
                    col_start: int, col_width: int, coverage_type: str) -> None:
         
         col_names = list(df.iloc[header_row+1,col_start:col_start + col_width])
-        print(col_names)
+        
         i = col_start
         
         

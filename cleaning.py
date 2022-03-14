@@ -43,10 +43,8 @@ def main():
                 'coverage_type']
     for df in tidy.values:
         if 'Average \nSpending Per Claim' in df.columns:
-            print("found it")
             df['Average Spending Per Claim'] = df['Average \nSpending Per Claim']
-        print(df.columns)
-    
+        
         new_list.append(df[cols_to_keep])
     
     tidy.values = new_list
@@ -54,8 +52,15 @@ def main():
     cleaned_df = tidy.glue()
     cleaned_df['year'] = cleaned_df['year'].apply(lambda x: int(x[-4:]))
 
-    cleaned_df.to_csv("data/cleaned.csv")
+    cleaned_df.replace('  ', np.nan, inplace=True)
+    cleaned_df.replace(' ', np.nan, inplace=True)
+    cleaned_df.replace('', np.nan, inplace=True)
+    
+    cleaned_df.to_csv("data/cleaned.csv", na_rep='NULL')
 
+    print("Data Cleaning Finished: Two files saved in data folder.")
+    
+    import druginfo  # save drug info to another CSV
 
-
-main()
+if __name__ == "__main__":
+    main()

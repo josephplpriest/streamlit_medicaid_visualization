@@ -1,7 +1,7 @@
 # 
 # 
-# 
-# 
+# This file is used to clean drug info between medicare and medicaid data.
+# It will return a cleaned csv with *most* duplicates removed.
 # 
 # 
 import pandas as pd
@@ -23,4 +23,3 @@ combined_info['Brand'] = combined_info['Brand'].str.lower().apply(lambda x: x.re
 cleaner = combined_info.drop_duplicates('Brand').reset_index(drop=True)
 
 cleaner.to_csv("data/drug_info.csv")
-
