@@ -1,3 +1,6 @@
 streamlit
+openpyxl
+pandas
+python-Levenshtein
 fuzzywuzzy
 plotly
