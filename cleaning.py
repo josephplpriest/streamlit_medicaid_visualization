@@ -56,7 +56,7 @@ def main():
     cleaned_df.replace(' ', np.nan, inplace=True)
     cleaned_df.replace('', np.nan, inplace=True)
     
-    cleaned_df.to_csv("./data/cleaned.csv", na_rep='NULL')
+    cleaned_df.to_csv("./data/cleaned.csv", float_format='%.2f', na_rep='NULL')
 
     print("Data Cleaning Finished: Two files saved in data folder.")
     

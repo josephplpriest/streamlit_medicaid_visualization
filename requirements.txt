@@ -1,6 +1,7 @@
-streamlit
-openpyxl
-pandas
-python-Levenshtein
-fuzzywuzzy
-plotly
+streamlit==1.6.0
+openpyxl==3.0.9
+pandas==1.4.1
+python-Levenshtein==0.12.2
+fuzzywuzzy==0.18.0
+plotly==5.6.0
+wordcloud==1.8.1
