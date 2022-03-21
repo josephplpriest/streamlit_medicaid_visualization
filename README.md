@@ -47,11 +47,14 @@ localhost:8501
 
 After running the program, type Ctrl^C to close streamlit in the terminal and type "exit" to leave the docker container.
 
-```bash docker kill <container_name>"```  <---- kill the container process
+```bash 
+docker kill <container_name>"```  <---- kill the container process
 
-```bash docker container prune``` 	 <---- remove the container
+```bash 
+docker container prune``` 	 <---- remove the container
 
-```bash docker rmi -f <image_name>```   <---- remove the image, IMPORTANT as it will likely be 1+GB as it includes the full python distro + packages
+```bash 
+docker rmi -f <image_name>```   <---- remove the image, IMPORTANT as it will likely be 1+GB as it includes the full python distro + packages
 
 ### Alternatively, create a virtual env then install packages via requirements.txt
 
