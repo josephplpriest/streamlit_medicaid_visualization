@@ -4,12 +4,7 @@
 
 ## 2. Covering the years 2012-2020, including both Medicare (generally patients 65+) and Medicaid (by need).
 
-## 3. Allow users to select a drug to find more information about its use
-
-
-
-
-
+## 3. Allow users to search for a drug to find more information about its use
 
 
 ### How to run this project
@@ -91,7 +86,7 @@ localhost:8501
   
   a. The streamlit **app.py** runs as a loop, updating when the user gives an input or changes a value (selecting a drug for instance)
   
-  b. The **tidy.py** is a class that is imported into **cleaning.py** in order to convert the excel files to tidy dataframes.
+  b. **Tidy.py** is a class that is imported into **cleaning.py** in order to convert the excel files to tidy dataframes.
   
   c. The **tidy.py** class uses lists to keep track of the split dataframes, before gluing them together/appending them.
   
