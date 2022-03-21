@@ -7,6 +7,3 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-#CMD [ "python", "./cleaning.py" ]
-#CMD [ "streamlit", "run", "./app.py"]
-

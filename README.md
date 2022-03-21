@@ -8,7 +8,7 @@ What drugs have the highest demand (most claims)?
 What drug companies are making the most money from Medicare/Medicaid?
 
 
-## 2. Covering the years 2012-2020, including both Medicare(generally patients 65+) and Medicaid(by need).
+## 2. Covering the years 2012-2020, including both Medicare (generally patients 65+) and Medicaid (by need).
 
 ## 3. Allow users to select a drug to find more information about
 
@@ -37,8 +37,8 @@ python cleaning.py
 
 #Next, run
 
-streamlit app.py
+streamlit run app.py
 
-#Click on the local link or type into browser:
+#Click on the network link or type into browser:
 
-localhost:8501 
+localhost:8501
