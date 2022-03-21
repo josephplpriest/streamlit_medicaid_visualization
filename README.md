@@ -14,3 +14,31 @@ What drug companies are making the most money from Medicare/Medicaid?
 
 ## 4. Create a word cloud based on drug descriptions
 
+
+## 5. How to run this project
+
+Install docker.
+
+Clone the repo.
+
+From the command line, in the repo folder, run:
+
+docker build -t medi-app .
+
+docker run -dit -p 8501:8501 medi-app
+
+docker exec -it <container_name> /bin/bash
+
+# from the command line in the container run:
+
+python cleaning.py
+
+#It may take a few seconds to run, then print a notification when it's done
+
+#Next, run
+
+streamlit app.py
+
+#Click on the local link or type into browser:
+
+localhost:8501 
