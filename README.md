@@ -86,9 +86,9 @@ localhost:8501
   
   a. The streamlit **app.py** runs as a loop, updating when the user gives an input or changes a value (selecting a drug for instance)
   
-  b. **Tidy.py** is a class that is imported into **cleaning.py** in order to convert the excel files to tidy dataframes.
+  b. **Tidy.py** contains the **tidy** class that is imported into **cleaning.py** in order to convert the excel files to tidy dataframes.
   
-  c. The **tidy.py** class uses lists to keep track of the split dataframes, before gluing them together/appending them.
+  c. The **tidy** class uses lists to keep track of the split dataframes, before gluing them together/appending them.
   
   d. The *tidy.set_indices*, *tidy.set_values* and *tidy.glue* are three defined methods. The *set_indices* saves state data in the class (indices for multiple dataframes), the second saves multipe dataframes in a list, and the third returns a complete dataframe with shared indices.
 
