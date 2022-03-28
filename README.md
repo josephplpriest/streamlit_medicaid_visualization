@@ -2,48 +2,118 @@
 
 ## 1. A project to explore drug spending data from the US government.
 
-What drugs are the most expensive?
-Are they due to a certain subsection of conditions?
-What drugs have the highest demand (most claims)?
-What drug companies are making the most money from Medicare/Medicaid?
-
-
 ## 2. Covering the years 2012-2020, including both Medicare (generally patients 65+) and Medicaid (by need).
 
-## 3. Allow users to select a drug to find more information about
+## 3. Allow users to search for a drug to find more information about its use
 
-# How to run this project
 
-Install docker.
+### How to run this project
+Python>=3.8
+Other requirements provided by dockerfile + requirements.txt
 
-Clone the repo.
+#### Install docker.
+
+#### Clone the repo.
 
 From the command line, in the repo folder, run:
-
+```bash
 docker build -t medi-app .
-
+```
+```bash
 docker run -dit -p 8501:8501 medi-app
-
+```
+```bash
 docker exec -it <container_name> /bin/bash
-
-# from the command line in the container run:
-
+```
+from the command line in the container run:
+```bash
 python cleaning.py
+```
+It may take a few seconds to run, then will print a notification when it's done
 
-#It may take a few seconds to run, then print a notification when it's done
-
-#Next, run
-
+Next, run:
+```bash
 streamlit run app.py
-
-#Click on the network link or type into browser:
+```
+Click on the network link or type into browser:
 
 localhost:8501
 
 
-#After running the program, type Ctrl^C to close streamlit in the terminal and type "exit" to leave the docker container.
-"docker kill <container_name>"  <---- kill the container process
+After running the program, type Ctrl^C to close streamlit in the terminal and type "exit" to leave the docker container.
 
-"docker container prune" 	 <---- remove the container
+```bash
+docker kill <container_name>
+```  
+^^ this will kill the container process
 
-"docker rmi -f <image_name>"   <---- remove the image, IMPORTANT as it will likely be 1+GB as it includes the full python distro + packages
+```bash
+docker container prune
+``` 	
+^^ remove the container
+
+```bash
+docker rmi -f <image_name>
+```
+^^ remove the image, IMPORTANT as it will likely be 1+GB as it includes the full python distro + packages
+
+### Alternatively, create a virtual env then install packages via requirements.txt
+
+```bash
+python3 -m venv medi-env
+```
+
+```bash
+pip install -r requirements.txt
+```
+```bash
+python cleaning.py
+```
+It may take a few seconds to run, then will print a notification when it's done
+
+Next, run:
+```bash
+streamlit run app.py
+```
+Click on the network link or type into browser:
+
+localhost:8501
+
+
+## Project Requirements:
+
+### 1. Python programming basics:
+  
+  a. The streamlit **app.py** runs as a loop, updating when the user gives an input or changes a value (selecting a drug for instance)
+  
+  b. **Tidy.py** contains the **tidy** class that is imported into **cleaning.py** in order to convert the excel files to tidy dataframes.
+  
+  c. The **tidy** class uses lists to keep track of the split dataframes, before gluing them together/appending them.
+  
+  d. The *tidy.set_indices*, *tidy.set_values* and *tidy.glue* are three defined methods. The *set_indices* saves state data in the class (indices for multiple dataframes), the second saves multipe dataframes in a list, and the third returns a complete dataframe with shared indices.
+
+### 2. Utilize External Data:
+  
+  a. Data is taken from
+  https://data.cms.gov/summary-statistics-on-use-and-payments/medicare-medicaid-spending-by-drug/medicaid-spending-by-drug
+  https://data.cms.gov/summary-statistics-on-use-and-payments/medicare-medicaid-spending-by-drug/medicare-part-d-spending-by-drug/data
+  
+  b. Using excel files, the **cleaning.py** file reads in the excel files, using separate sheets from each, and combines the data, saving it as two csvs, **cleaned.csv** and **drug_info.csv**.
+
+### 3. Data Display:
+  
+  a. Using the streamlit **app.py**, we display data for the years 2012-2020 with plotly. Currently, we are showing "Total Dosage Units" vs "Total      Spending", with labels according to the drugs' "Brand Name."
+  
+  b. The user can search for drug info by "Generic" or "Brand" name. Using fuzzy matching and the Levenshtein distance to return the closest drug names, we search the drug info database for the closest matches and display descriptions of the drug, as well as tabular info regarding spending.
+  
+### 4. Best Practices:
+  
+  a. Using a dockerfile, we can have the user get an identical image and container to run the programs.
+  
+  b. Alternatively, we have included documentation for using a virtual environment and the **requirements.txt** file to run the programs.
+  
+### 5. "Stretch" List:
+  
+  a. TBD unit testing
+  
+  b. There is a jupyter notebook in the repo in a very preliminary state. More analysis and possibly data cleaning is needed.
