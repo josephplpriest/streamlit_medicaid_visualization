@@ -1,4 +1,3 @@
-from codecs import ignore_errors
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -23,10 +22,6 @@ def main():
     med_df.sort_values('year', inplace=True)
     fig = px.scatter(med_df[med_df['coverage_type']=='medicaid'], x = "Total Dosage Units", y = "Total Spending", hover_name='Brand Name', facet_col='year', facet_col_wrap=3)
     
-    
-
-    st.dataframe(med_df.head())
-
     st.plotly_chart(fig)
     
     selection = st.selectbox("Brand Name or Generic", ("Brand", "Generic"))
