@@ -3,10 +3,10 @@ import numpy as np
 from tidy import Tidy_df
 
 def main():
-    filename1 = "./data/DSD_MCD_R21_DYT20_Web.xlsx"
-    filename2 = "./data/DSD_MCD_R17_DYT16_Web.xlsx"
-    filename3 = "./data/DSD_PTD_R21_DYT20_Web.xlsx"
-    filename4 = "./data/DSD_PTD_R17_DYT16_Web.xlsx"
+    filename1 = "./data/raw/DSD_MCD_R21_DYT20_Web.xlsx"
+    filename2 = "./data/raw/DSD_MCD_R17_DYT16_Web.xlsx"
+    filename3 = "./data/raw/DSD_PTD_R21_DYT20_Web.xlsx"
+    filename4 = "./data/raw/DSD_PTD_R17_DYT16_Web.xlsx"
 
     mcd_costs_20 = pd.read_excel(filename1, sheet_name=1, skiprows=1).iloc[:,:-2]
     mcd_costs_16 = pd.read_excel(filename2, sheet_name=1, skiprows=1).iloc[:,:-2]
@@ -56,7 +56,7 @@ def main():
     cleaned_df.replace(' ', np.nan, inplace=True)
     cleaned_df.replace('', np.nan, inplace=True)
     
-    cleaned_df.to_csv("./data/combined.csv", float_format='%.2f', na_rep='NULL')
+    cleaned_df.to_csv("./data/clean/combined.csv", float_format='%.2f', na_rep='NULL')
 
     print("Data Cleaning Finished: Two files saved in data folder.")
     
