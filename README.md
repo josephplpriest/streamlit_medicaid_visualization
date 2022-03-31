@@ -16,8 +16,10 @@
 
 ### 2. Utilize External Data:
   
-  a. Data is taken from
+  a. Data is taken from:
+  
   https://data.cms.gov/summary-statistics-on-use-and-payments/medicare-medicaid-spending-by-drug/medicaid-spending-by-drug
+  
   https://data.cms.gov/summary-statistics-on-use-and-payments/medicare-medicaid-spending-by-drug/medicare-part-d-spending-by-drug/data
   
   b. Using excel files, the **cleaning.py** file reads in the excel files, using separate sheets from each, and combines the data, saving it as two csvs, **cleaned.csv** and **drug_info.csv**.
