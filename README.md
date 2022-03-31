@@ -22,12 +22,13 @@ docker build -t medi-app .
 ```bash
 docker run -dit -p 8501:8501 medi-app
 ```
+This will print the container name, to use in the next line. Alternatively, use "docker ps" to see the simpler name given by docker to the container.
 ```bash
 docker exec -it <container_name> /bin/bash
 ```
 from the command line in the container run:
 ```bash
-python cleaning.py
+python sr/prelim_cleaning.py
 ```
 It may take a few seconds to run, then will print a notification when it's done
 
@@ -61,6 +62,10 @@ docker rmi -f <image_name>
 
 ```bash
 python3 -m venv medi-env
+```
+
+```bash
+source medi-env/bin/activate
 ```
 
 ```bash

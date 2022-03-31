@@ -14,11 +14,11 @@ def main():
     st.markdown('<p class="big-font">Medicare and Medicaid Spending: 2012-2020</p>', unsafe_allow_html=True)
     
     
-    med_df = pd.read_csv('./data/cleaned.csv', header=0, index_col=0)
+    med_df = pd.read_csv('./data/combined/spending.csv', header=0, index_col=0)
 
     med_df.iloc[:,[3,4,5]] = med_df.iloc[:,[3,4,5]].astype(int, errors="ignore")
     
-    drug_info = pd.read_csv('./data/drug_info.csv', header=0, index_col=0)
+    drug_info = pd.read_csv('./data/combined/drug_info.csv', header=0, index_col=0)
     med_df.sort_values('year', inplace=True)
     fig = px.scatter(med_df[med_df['coverage_type']=='medicaid'], x = "Total Dosage Units", y = "Total Spending", hover_name='Brand Name', facet_col='year', facet_col_wrap=3)
     
