@@ -5,8 +5,8 @@
 # 
 # 
 import pandas as pd
-filename1 = "data/DSD_PTD_R21_DYT20_Web.xlsx"
-filename2 = "data/DSD_MCD_R21_DYT20_Web.xlsx"
+filename1 = "./data/raw/DSD_PTD_R21_DYT20_Web.xlsx"
+filename2 = "./data/raw/DSD_MCD_R21_DYT20_Web.xlsx"
 
 
 drug_info_mcr = pd.read_excel(filename1, sheet_name=3, skiprows=4, header=0)
@@ -22,4 +22,4 @@ combined_info['Brand'] = combined_info['Brand'].str.lower().apply(lambda x: x.re
 
 cleaner = combined_info.drop_duplicates('Brand').reset_index(drop=True)
 
-cleaner.to_csv("data/drug_info.csv")
+cleaner.to_csv("./data/combined/drug_info.csv")
