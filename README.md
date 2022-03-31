@@ -140,7 +140,7 @@ It may take a few seconds to run, then will print a notification when it's done
 ```bash
 jupyter notebook
 ```
-To run the notebooks. (Note: They must be run in order)
+To run the notebooks. (Note: They must be run in order, after running **src/prelim_cleaning.py**)
 
 Next, run:
 ```bash
