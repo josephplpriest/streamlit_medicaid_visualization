@@ -50,7 +50,9 @@ def main():
     
         tidy.values = new_list
     
-    tidy.values = [df for i, df in enumerate(tidy.values) if (i != 9 & i != 18)] 
+    #remove duplicate 2016 years from overlap
+    del tidy.values[-1]
+    del tidy.values[9]
     
     cleaned_df = tidy.glue()
     cleaned_df['year'] = cleaned_df['year'].apply(lambda x: int(x[-4:]))
