@@ -41,14 +41,17 @@ def main():
                 'Average Spending Per Claim',
                 'year', 
                 'coverage_type']
+    
     for df in tidy.values:
         if 'Average \nSpending Per Claim' in df.columns:
             df['Average Spending Per Claim'] = df['Average \nSpending Per Claim']
         
         new_list.append(df[cols_to_keep])
     
-    tidy.values = new_list
-
+        tidy.values = new_list
+    
+    tidy.values = [df for i, df in enumerate(tidy.values) if (i != 9 & i != 18)] 
+    
     cleaned_df = tidy.glue()
     cleaned_df['year'] = cleaned_df['year'].apply(lambda x: int(x[-4:]))
 
