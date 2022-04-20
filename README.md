@@ -1,88 +1,5 @@
 # Streamlit Medicaid/Medicare Data
-
-## 1. A project to explore drug spending data from the US government.
-
-## 2. Covering the years 2012-2020, including both Medicare (generally patients 65+) and Medicaid (by need).
-
-## 3. Allow users to search for a drug to find more information about its use
-
-
-### How to run this project
-Python>=3.8
-Other requirements provided by dockerfile + requirements.txt
-
-#### Install docker.
-
-#### Clone the repo.
-
-From the command line, in the repo folder, run:
-```bash
-docker build -t medi-app .
-```
-```bash
-docker run -dit -p 8501:8501 medi-app
-```
-This will print the container name, to use in the next line. Alternatively, use "docker ps" to see the simpler name given by docker to the container.
-```bash
-docker exec -it <container_name> /bin/bash
-```
-from the command line in the container run:
-```bash
-python sr/prelim_cleaning.py
-```
-It may take a few seconds to run, then will print a notification when it's done
-
-Next, run:
-```bash
-streamlit run app.py
-```
-Click on the network link or type into browser:
-
-localhost:8501
-
-
-After running the program, type Ctrl^C to close streamlit in the terminal and type "exit" to leave the docker container.
-
-```bash
-docker kill <container_name>
-```  
-^^ this will kill the container process
-
-```bash
-docker container prune
-``` 	
-^^ remove the container
-
-```bash
-docker rmi -f <image_name>
-```
-^^ remove the image, IMPORTANT as it will likely be 1+GB as it includes the full python distro + packages
-
-### Alternatively, create a virtual env then install packages via requirements.txt
-
-```bash
-python3 -m venv medi-env
-```
-
-```bash
-source medi-env/bin/activate
-```
-
-```bash
-pip install -r requirements.txt
-```
-```bash
-python cleaning.py
-```
-It may take a few seconds to run, then will print a notification when it's done
-
-Next, run:
-```bash
-streamlit run app.py
-```
-Click on the network link or type into browser:
-
-localhost:8501
+### A project to explore US drug spending data, covering the years 2012-2020, including both Medicare part D (generally for patients 65+) and Medicaid (by need).
 
 
 ## Project Requirements:
@@ -99,8 +16,10 @@ localhost:8501
 
 ### 2. Utilize External Data:
   
-  a. Data is taken from
+  a. Data is taken from:
+  
   https://data.cms.gov/summary-statistics-on-use-and-payments/medicare-medicaid-spending-by-drug/medicaid-spending-by-drug
+  
   https://data.cms.gov/summary-statistics-on-use-and-payments/medicare-medicaid-spending-by-drug/medicare-part-d-spending-by-drug/data
   
   b. Using excel files, the **cleaning.py** file reads in the excel files, using separate sheets from each, and combines the data, saving it as two csvs, **cleaned.csv** and **drug_info.csv**.
@@ -121,4 +40,115 @@ localhost:8501
   
   a. TBD unit testing
   
-  b. There is a jupyter notebook in the repo in a very preliminary state. More analysis and possibly data cleaning is needed.
+  b. There are two minimal jupyter notebooks in the repo under the notebooks directory. More analysis and possibly data cleaning is needed.
+
+
+
+## How to run this project
+Python>=3.8
+Other requirements provided by dockerfile + requirements.txt
+
+#### Install docker.
+
+#### Clone the repo.
+
+From the command line, in the repo folder, run:
+```bash
+docker build -t medi-app .
+```
+```bash
+docker run -dit -p 8501:8501 -p 8888:8888 medi-app
+```
+
+
+After running, this will print the container name, to use in the next line. Alternatively, use "docker ps" to see the simpler name given by docker to the container. We map the host machine ports to the container ports 8501 and 8888 to access the streamlit app and jupyter outside the container.
+
+```bash
+docker exec -it <container_name> /bin/bash
+```
+from the command line in the container run:
+```bash
+python src/prelim_cleaning.py
+```
+It may take a few seconds to run, then will print a notification when it's done
+
+You can then run the jupyter notebooks, in the notebook folder, using:
+
+```bash
+jupyter notebook --ip 0.0.0.0 --no-browser --allow-root
+```
+
+Access the jupyter notebook in the browser with the "http://127.0.0.1:8888/?token=" that jupyter prints to the console.
+
+Note, the jupyter notebooks must be run in order to have the correct data.
+
+Next, run:
+```bash
+streamlit run app.py
+```
+
+Click on the network link or type into browser:
+
+localhost:8501
+
+
+After running the program, type Ctrl^C to close streamlit in the terminal and type "exit" to leave the docker container.
+
+```bash
+docker kill <container_name>
+```  
+^^ this will kill the container process
+
+```bash
+docker ps
+```
+(if you've forgotten the container name)
+
+```bash
+docker container prune
+``` 	
+^^ remove the container
+
+```bash
+docker rmi -f <image_name>
+```
+```bash
+docker images
+```
+(if you've forgotten the container name)
+
+^^ remove the image, IMPORTANT as it will likely be 1+GB as it includes the full python distro + packages
+
+### Alternatively, create a virtual env then install packages via requirements.txt
+
+```bash
+python3 -m venv medi-env
+```
+
+```bash
+source medi-env/bin/activate
+```
+
+```bash
+pip install -r requirements.txt
+```
+```bash
+python src/prelim_cleaning.py
+```
+It may take a few seconds to run, then will print a notification when it's done
+
+```bash
+jupyter notebook
+```
+To run the notebooks. (Note: They must be run in order, after running **src/prelim_cleaning.py**)
+
+Next, run:
+```bash
+streamlit run app.py
+```
+Click on the network link or type into browser:
+
+localhost:8501
+
+
+
